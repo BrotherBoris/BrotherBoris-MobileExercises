@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:crud_api/components/basic_button.dart';
-import 'package:crud_api/scenes/games_list_screen.dart';
+import 'package:crud_api/front/components/basic_button.dart';
+import 'package:crud_api/front/scenes/game_list_screen.dart';
 
 class MenuMainScreen extends StatefulWidget {
   const MenuMainScreen({super.key});
@@ -27,7 +27,7 @@ class _MenuMainScreen extends State<MenuMainScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => GamesListScreen()),
+                    MaterialPageRoute(builder: (context) => GameListScreen()),
                   );
                 }),
           ],

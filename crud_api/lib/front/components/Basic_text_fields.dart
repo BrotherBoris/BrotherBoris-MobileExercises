@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BasicTextField extends StatelessWidget {
-  final TextEditingController controller;
   final String fieldLabel;
+  final TextEditingController controller;
 
   const BasicTextField({super.key, required this.fieldLabel, required this.controller});
 
@@ -22,10 +22,13 @@ class BasicTextField extends StatelessWidget {
 }
 
 class BasicTextFieldForm extends StatelessWidget {
-  final TextEditingController controller;
   final String fieldlabel;
+  final TextEditingController controller;
 
-  const BasicTextFieldForm({super.key, required this.controller, required this.fieldlabel});
+  final String defaultValidatorText;
+  final String? validator;
+
+  const BasicTextFieldForm({super.key, required this.fieldlabel, required this.controller, required this.defaultValidatorText, required this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +38,10 @@ class BasicTextFieldForm extends StatelessWidget {
           controller: controller,
           decoration: InputDecoration(border: const OutlineInputBorder(), labelText: fieldlabel),
           validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your name';
-            }
-            return value;
+            validator;
           },
-          onEditingComplete: () {
-            Form.of(context).validate();
+          onSaved: (value) {
+            print(value);
           },
         ));
   }

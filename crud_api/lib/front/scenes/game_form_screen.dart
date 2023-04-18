@@ -25,21 +25,7 @@ class _GameFormScreen extends State<GameFormScreen> {
             //alinha no centro da tela
             children: <Widget>[
               const SizedBox(height: 10),
-              SizedBox(
-                  width: 350.0,
-                  child: TextFormField(
-                    controller: _titleController,
-                    decoration: InputDecoration(border: const OutlineInputBorder(), labelText: "fieldlabel"),
-                    validator: (value) {
-                      if (value == null || value.length < 10) {
-                        return 'Please enter your name';
-                      }
-                      return value;
-                    },
-                    onEditingComplete: () {
-                      Form.of(context).validate();
-                    },
-                  )),
+              //BasicTextFieldForm(controller: _titleController, fieldlabel: "Game Title"),
               const SizedBox(height: 10),
               BasicTextField(fieldLabel: "Title", controller: _titleController),
               const SizedBox(height: 10),

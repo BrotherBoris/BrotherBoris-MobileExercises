@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:crud_api/back/models/game.dart';
 import 'package:crud_api/front/scenes/game_form_screen.dart';
+import 'package:crud_api/front/scenes/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:crud_api/front/scenes/game_list_screen.dart';
 import 'front/components/basic_button.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: const MyHomePage(),
+      home: MyForm(),
     );
   }
 }

@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       // ! change after testing
-      home: GameFormScreen(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const GameListScreen()),
+                    MaterialPageRoute(builder: (context) => GameListScreen()),
                   );
                 }),
           ],

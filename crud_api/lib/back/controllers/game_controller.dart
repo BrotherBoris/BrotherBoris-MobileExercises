@@ -1,11 +1,17 @@
 import 'package:crud_api/back/models/game.dart';
 
 class GameController {
-  List<Game> _listGames = [];
+  static List<Game> _listGames = [];
   Game? _game;
 
   // Getters //
-  List<Game> get listGames => _listGames;
+  List<Game> get listGames {
+    if (_listGames.isEmpty) {
+      _listGames = Dumper().dump(30).cast<Game>();
+    }
+    return _listGames;
+  }
+
   Game? get game => _game;
   // Getters //
   // setters //
@@ -27,15 +33,17 @@ class GameController {
 
   void read() {}
 
-  void edit(Game game) {
-    int index = _listGames.indexWhere((g) => g.id == game.id);
+  void update(Game game) {
+    int index = _listGames.indexWhere((gameQuery) => gameQuery.id == game.id);
     if (index != -1) {
       _listGames[index] = game;
     }
   }
 
-  void delete(int gameId) {
-    _listGames.removeWhere((game) => game.id == gameId);
+  void edit(Game game) {}
+
+  void delete(int id) {
+    _listGames.removeWhere((game) => game.id == id);
   }
 
   void cancel() {

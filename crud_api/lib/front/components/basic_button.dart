@@ -14,3 +14,21 @@ class BasicButton extends StatelessWidget {
     );
   }
 }
+
+class VisibleButton extends StatelessWidget {
+  final String buttonText;
+  final VoidCallback onPressed;
+  bool isVisible;
+
+  VisibleButton({required this.buttonText, required this.onPressed, this.isVisible = true});
+
+  @override
+  Widget build(BuildContext context) {
+    return Visibility(
+        visible: isVisible,
+        child: ElevatedButton(
+          onPressed: onPressed,
+          child: Text(buttonText),
+        ));
+  }
+}

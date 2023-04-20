@@ -1,6 +1,8 @@
 //TODO add more validators!
 // * CPF/CNPJ - phone number - etc
 
+import 'package:flutter/material.dart';
+
 /// Custom Validator Class for Form-Field Components
 ///
 /// In order to be used, the [combinedValidator] must be used first
@@ -24,7 +26,7 @@ class ValidatorForm {
 
   /// Require a value that isn't null or empty
   // TODO change/integrate in other Validators
-  static String? Function(String?) validateEmpty({String defaultMessage = "please enter the field"}) {
+  static String? Function(String?) validateEmpty({String defaultMessage = "Enter the field"}) {
     return (value) {
       if (value == null || value.isEmpty) {
         return defaultMessage;
@@ -54,7 +56,7 @@ class ValidatorForm {
     };
   }
 
-  static String? Function(String?) validateNumberNonNegative({String defaultMessage = "please enter the field"}) {
+  static String? Function(String?) validateNumberNonNegative({String defaultMessage = "Enter a valid number"}) {
     return (value) {
       if (double.tryParse(value!) == null || int.tryParse(value) == null) {
         return defaultMessage;

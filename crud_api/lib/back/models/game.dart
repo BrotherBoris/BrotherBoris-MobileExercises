@@ -47,7 +47,7 @@ class Dumper {
     List<Game> list = [];
 
     for (var i = 0; i < iterations; i++) {
-      list.add(Game(i, 'Game $i', Random().nextDouble() * 500, 'pub $i'));
+      list.add(Game(i, 'Game $i', 200, 'publisher $i'));
     }
 
     return list;

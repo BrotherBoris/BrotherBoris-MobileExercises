@@ -7,8 +7,9 @@ import 'package:crud_api/front/components/Basic_text_fields.dart';
 
 class GameFormScreen extends StatefulWidget {
   GameController gameController = GameController();
+  Game? editableGame;
 
-  GameFormScreen({super.key});
+  GameFormScreen({super.key, this.editableGame});
 
   @override
   State<GameFormScreen> createState() => _GameFormScreen();
@@ -25,6 +26,9 @@ class _GameFormScreen extends State<GameFormScreen> {
   @override
   void initState() {
     super.initState();
+    if (widget.editableGame != null) {
+      widget.gameController.setGame(widget.editableGame);
+    }
     if (widget.gameController.game != null) {
       _idController.text = widget.gameController.game!.id.toString();
       _titleController.text = widget.gameController.game!.title!;
@@ -80,26 +84,49 @@ class _GameFormScreen extends State<GameFormScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      BasicButton(
-                          buttonText: "Salvar",
+                      VisibleButton(
+                          isVisible: widget.gameController.game == null,
+                          buttonText: "Create",
                           onPressed: () {
                             if (_formkey.currentState!.validate()) {
                               widget.gameController.create(Game(
                                 null,
                                 _titleController.text,
-                                -double.parse(_priceController.text),
+                                double.parse(_priceController.text),
                                 _publisherController.text,
                               ));
-                              print(widget.gameController.listGames);
+                              Navigator.pop(context);
+                            }
+                          }),
+                      VisibleButton(
+                          isVisible: widget.gameController.game != null,
+                          buttonText: "Update",
+                          onPressed: () {
+                            if (_formkey.currentState!.validate()) {
+                              widget.gameController.setGame(Game(
+                                int.tryParse(_idController.text),
+                                _titleController.text,
+                                double.parse(_priceController.text),
+                                _publisherController.text,
+                              ));
+                              widget.gameController.update(widget.gameController.game!);
+                              Navigator.pop(context);
                             }
                           }),
                       const SizedBox(width: 10),
-                      BasicButton(
-                          buttonText: "Limpar",
+                      VisibleButton(
+                          isVisible: widget.gameController.game == null,
+                          buttonText: "Clear",
                           onPressed: () {
                             _titleController.text = "";
                             _priceController.text = "";
                             _publisherController.text = "";
+                          }),
+                      const SizedBox(width: 10),
+                      BasicButton(
+                          buttonText: "Return",
+                          onPressed: () {
+                            Navigator.pop(context);
                           }),
                     ],
                   ),

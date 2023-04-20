@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:crud_api/back/models/game.dart';
 import 'package:crud_api/front/scenes/game_form_screen.dart';
 import 'package:crud_api/front/scenes/test_screen.dart';
+import 'package:crud_api/front/scenes/testgame_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:crud_api/front/scenes/game_list_screen.dart';
 import 'front/components/basic_button.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: MyForm(),
+      // ! change after testing
+      home: GameFormScreen(),
     );
   }
 }
@@ -57,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const GameFormScreen()),
+                    MaterialPageRoute(builder: (context) => GameFormScreen()),
                   );
                 }),
             const SizedBox(height: 10),
@@ -95,14 +97,11 @@ class MyData extends DataTableSource {
   }
 
   @override
-  // TODO: implement isRowCountApproximate
   bool get isRowCountApproximate => false;
 
   @override
-  // TODO: implement rowCount
   int get rowCount => _data.length;
 
   @override
-  // TODO: implement selectedRowCount
   int get selectedRowCount => 0;
 }

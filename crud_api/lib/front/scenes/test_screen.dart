@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:crud_api/front/components/Basic_text_fields.dart';
 import 'package:crud_api/back/validators/validator_form.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class MyForm extends StatefulWidget {
   @override
@@ -12,6 +13,9 @@ class _MyFormState extends State<MyForm> {
   String _name = "";
   String _email = "";
   final TextEditingController _testController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _publisherController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +28,12 @@ class _MyFormState extends State<MyForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              BasicTextFieldForm(
+                fieldLabel: "fieldLabel",
+                controller: _testController,
+                validators: [ValidatorForm.validateEmpty(), ValidatorForm.validateCPF()],
+                onSaved: (value) {},
+              ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Name'),
                 validator: (value) {
@@ -39,7 +49,11 @@ class _MyFormState extends State<MyForm> {
               TextFormField(
                 decoration: InputDecoration(labelText: 'Email'),
                 validator: (value) {
-                  return ValidatorForm.validatorLexicom([ValidatorForm.validateEmpty(value), ValidatorForm.validateSize(value)]);
+                  if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value!)) {
+                    return 'Please enter a valid email address';
+                  }
+
+                  return null;
                 },
                 onSaved: (value) {
                   _email = value!;

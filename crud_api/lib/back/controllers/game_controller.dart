@@ -31,7 +31,7 @@ class GameController {
     _listGames.add(game);
   }
 
-  void read() {}
+  //void read() {}
 
   void update(Game game) {
     int index = _listGames.indexWhere((gameQuery) => gameQuery.id == game.id);
@@ -40,13 +40,13 @@ class GameController {
     }
   }
 
-  void edit(Game game) {}
+  //void edit(Game game) {}
 
   void delete(int id) {
     _listGames.removeWhere((game) => game.id == id);
   }
 
-  void cancel() {
+  /* void cancel() {
     _game = null;
-  }
+  } */
 }

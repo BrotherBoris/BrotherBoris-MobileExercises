@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:crud_api/back/controllers/game_controller.dart';
 import 'package:crud_api/back/models/game.dart';
-import 'package:flutter/material.dart';
 import 'package:crud_api/back/validators/validator_form.dart';
 import 'package:crud_api/front/components/basic_button.dart';
 import 'package:crud_api/front/components/Basic_text_fields.dart';
@@ -55,83 +55,81 @@ class _GameFormScreen extends State<GameFormScreen> {
       body: Center(
         child: Form(
           key: _formkey,
-          child: Column(
-              //alinha no centro da tela
-              children: <Widget>[
-                const SizedBox(height: 10),
-                BasicTextFieldForm(
-                  fieldLabel: "Title",
-                  controller: _titleController,
-                  validators: [ValidatorForm.validateEmpty()],
-                  onSaved: (value) {},
-                ),
-                const SizedBox(height: 10),
-                NumberTextFieldForm(
-                  fieldLabel: "Price",
-                  controller: _priceController,
-                  validators: [ValidatorForm.validateEmpty(), ValidatorForm.validateNumberNonNegative()],
-                  onSaved: (value) {},
-                ),
-                const SizedBox(height: 10),
-                BasicTextFieldForm(
-                  fieldLabel: "Publisher",
-                  controller: _publisherController,
-                  validators: [ValidatorForm.validateEmpty()],
-                  onSaved: (value) {},
-                ),
-                const SizedBox(height: 10),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      VisibleButton(
-                          isVisible: widget.gameController.game == null,
-                          buttonText: "Create",
-                          onPressed: () {
-                            if (_formkey.currentState!.validate()) {
-                              widget.gameController.create(Game(
-                                null,
-                                _titleController.text,
-                                double.parse(_priceController.text),
-                                _publisherController.text,
-                              ));
-                              Navigator.pop(context);
-                            }
-                          }),
-                      VisibleButton(
-                          isVisible: widget.gameController.game != null,
-                          buttonText: "Update",
-                          onPressed: () {
-                            if (_formkey.currentState!.validate()) {
-                              widget.gameController.setGame(Game(
-                                int.tryParse(_idController.text),
-                                _titleController.text,
-                                double.parse(_priceController.text),
-                                _publisherController.text,
-                              ));
-                              widget.gameController.update(widget.gameController.game!);
-                              Navigator.pop(context);
-                            }
-                          }),
-                      const SizedBox(width: 10),
-                      VisibleButton(
-                          isVisible: widget.gameController.game == null,
-                          buttonText: "Clear",
-                          onPressed: () {
-                            _titleController.text = "";
-                            _priceController.text = "";
-                            _publisherController.text = "";
-                          }),
-                      const SizedBox(width: 10),
-                      BasicButton(
-                          buttonText: "Return",
-                          onPressed: () {
-                            Navigator.pop(context);
-                          }),
-                    ],
-                  ),
-                )
-              ]),
+          child: Column(children: <Widget>[
+            const SizedBox(height: 10),
+            BasicTextFieldForm(
+              fieldLabel: "Title",
+              controller: _titleController,
+              validators: [ValidatorForm.validateEmpty()],
+              onSaved: (value) {},
+            ),
+            const SizedBox(height: 10),
+            NumberTextFieldForm(
+              fieldLabel: "Price",
+              controller: _priceController,
+              validators: [ValidatorForm.validateEmpty(), ValidatorForm.validateNumberNonNegative()],
+              onSaved: (value) {},
+            ),
+            const SizedBox(height: 10),
+            BasicTextFieldForm(
+              fieldLabel: "Publisher",
+              controller: _publisherController,
+              validators: [ValidatorForm.validateEmpty()],
+              onSaved: (value) {},
+            ),
+            const SizedBox(height: 10),
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  VisibleButton(
+                      isVisible: widget.gameController.game == null,
+                      buttonText: "Create",
+                      onPressed: () {
+                        if (_formkey.currentState!.validate()) {
+                          widget.gameController.create(Game(
+                            null,
+                            _titleController.text,
+                            double.parse(_priceController.text),
+                            _publisherController.text,
+                          ));
+                          Navigator.pop(context);
+                        }
+                      }),
+                  VisibleButton(
+                      isVisible: widget.gameController.game != null,
+                      buttonText: "Update",
+                      onPressed: () {
+                        if (_formkey.currentState!.validate()) {
+                          widget.gameController.setGame(Game(
+                            int.tryParse(_idController.text),
+                            _titleController.text,
+                            double.parse(_priceController.text),
+                            _publisherController.text,
+                          ));
+                          widget.gameController.update(widget.gameController.game!);
+                          Navigator.pop(context);
+                        }
+                      }),
+                  const SizedBox(width: 10),
+                  VisibleButton(
+                      isVisible: widget.gameController.game == null,
+                      buttonText: "Clear",
+                      onPressed: () {
+                        _titleController.text = "";
+                        _priceController.text = "";
+                        _publisherController.text = "";
+                      }),
+                  const SizedBox(width: 10),
+                  BasicButton(
+                      buttonText: "Return",
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }),
+                ],
+              ),
+            )
+          ]),
         ),
       ),
     );

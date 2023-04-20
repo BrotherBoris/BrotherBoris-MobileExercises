@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:crud_api/main.dart';
 import 'package:crud_api/back/controllers/game_controller.dart';
 import 'package:crud_api/front/components/basic_button.dart';
 import 'package:crud_api/front/scenes/game_form_screen.dart';
-import 'package:crud_api/main.dart';
-import 'package:flutter/material.dart';
 
 class GameListScreen extends StatefulWidget {
   GameController gameController = GameController();
@@ -14,8 +14,6 @@ class GameListScreen extends StatefulWidget {
 }
 
 class _GameListScreen extends State<GameListScreen> {
-  final DataTableSource _data = MyData();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +37,6 @@ class _GameListScreen extends State<GameListScreen> {
                   ),
                 ),
                 DataTable(
-                  // ignore: prefer_const_constructors, prefer_const_literals_to_create_immutables
                   columns: const <DataColumn>[
                     DataColumn(label: Text('ID')),
                     DataColumn(label: Text('Name')),
@@ -52,7 +49,7 @@ class _GameListScreen extends State<GameListScreen> {
                       .map((game) => DataRow(cells: [
                             DataCell(Text(game.id.toString())),
                             DataCell(Text(game.title!)),
-                            DataCell(Text(game.price.toString())),
+                            DataCell(Text("R\$${game.price.toString()}")),
                             DataCell(Text(game.publisher!)),
                             DataCell(BasicButton(
                               buttonText: "Edit",

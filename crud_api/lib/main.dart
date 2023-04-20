@@ -1,10 +1,5 @@
-import 'dart:math';
-
-import 'package:crud_api/back/models/game.dart';
-import 'package:crud_api/front/scenes/game_form_screen.dart';
-import 'package:crud_api/front/scenes/test_screen.dart';
-import 'package:crud_api/front/scenes/testgame_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:crud_api/front/scenes/game_form_screen.dart';
 import 'package:crud_api/front/scenes/game_list_screen.dart';
 import 'front/components/basic_button.dart';
 
@@ -51,7 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          //alinha no centro da tela
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             BasicButton(
@@ -76,32 +70,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-}
-
-class MyData extends DataTableSource {
-  final List<Map<String, dynamic>> _data = List.generate(200, (index) => {"id": index, "title": "Item $index", "price": Random().nextInt(10000)});
-
-  @override
-  DataRow? getRow(int index) {
-    return DataRow(cells: [
-      DataCell(Text(_data[index]['id'].toString())),
-      DataCell(Text(_data[index]['title'])),
-      DataCell(Text(_data[index]['price'].toString())),
-      DataCell(BasicButton(
-        buttonText: "Editar",
-        onPressed: () {
-          print(index);
-        },
-      ))
-    ]);
-  }
-
-  @override
-  bool get isRowCountApproximate => false;
-
-  @override
-  int get rowCount => _data.length;
-
-  @override
-  int get selectedRowCount => 0;
 }

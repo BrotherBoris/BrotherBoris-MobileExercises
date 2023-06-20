@@ -87,12 +87,8 @@ class _GameFormScreen extends State<GameFormScreen> {
                       buttonText: "Create",
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
-                          widget.gameController.create(Game(
-                            null,
-                            _titleController.text,
-                            double.parse(_priceController.text),
-                            _publisherController.text,
-                          ));
+                          widget.gameController
+                              .create(Game(title: _titleController.text, price: double.parse(_priceController.text), publisher: _publisherController.text));
                           Navigator.pop(context);
                         }
                       }),
@@ -102,10 +98,10 @@ class _GameFormScreen extends State<GameFormScreen> {
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
                           widget.gameController.setGame(Game(
-                            int.tryParse(_idController.text),
-                            _titleController.text,
-                            double.parse(_priceController.text),
-                            _publisherController.text,
+                            id: _idController.text,
+                            title: _titleController.text,
+                            price: double.parse(_priceController.text),
+                            publisher: _publisherController.text,
                           ));
                           widget.gameController.update(widget.gameController.game!);
                           Navigator.pop(context);

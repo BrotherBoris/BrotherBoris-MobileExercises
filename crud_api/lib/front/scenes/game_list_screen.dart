@@ -66,7 +66,7 @@ class _GameListScreen extends State<GameListScreen> {
                             DataCell(BasicButton(
                               buttonText: "Delete",
                               onPressed: () {
-                                widget.gameController.delete(game.id!);
+                                widget.gameController.delete(game);
                                 setState(() {});
                               },
                             ))

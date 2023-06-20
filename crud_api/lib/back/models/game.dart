@@ -1,7 +1,5 @@
-import 'dart:math';
-
 class Game {
-  int? _id;
+  String? _id;
   String? _title;
   double? _price;
   String? _publisher;
@@ -9,17 +7,31 @@ class Game {
   static int staticInt = 0;
 
   // constructor
-  Game([this._id, this._title, this._price, this._publisher]);
+  Game({String? id, String? title, String? publisher, double? price})
+      : _id = id,
+        _title = title,
+        _publisher = publisher,
+        _price = price;
+  // constructor
+
+  // Factory //
+  factory Game.fromMap(Map<String, dynamic> map) {
+    return Game(
+      title: map['title'] as String?,
+      publisher: map['publisher'] as String?,
+      price: (map['price'] as num?)?.toDouble(),
+    );
+  }
 
   // getters //
-  int? get id => _id;
+  String? get id => _id;
   String? get title => _title;
   double? get price => _price;
   String? get publisher => _publisher;
   // getters //
 
   // setters //
-  set id(int? id) {
+  set id(String? id) {
     _id = id;
   }
 
@@ -39,17 +51,5 @@ class Game {
   @override
   String toString() {
     return 'Game(id: $_id, title: $_title, price: $_price, publisher: $_publisher)';
-  }
-}
-
-class Dumper {
-  List dump(iterations) {
-    List<Game> list = [];
-
-    for (var i = 0; i < iterations; i++) {
-      list.add(Game(i, 'Game $i', 200, 'publisher $i'));
-    }
-
-    return list;
   }
 }

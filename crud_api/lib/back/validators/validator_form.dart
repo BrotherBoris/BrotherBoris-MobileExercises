@@ -56,9 +56,21 @@ class ValidatorForm {
     };
   }
 
-  static String? Function(String?) validateNumberNonNegative({String defaultMessage = "Enter a valid number"}) {
+  static String? Function(String?) validateIntNonNegative({String defaultMessage = "Enter a valid number"}) {
     return (value) {
-      if (double.tryParse(value!) == null || int.tryParse(value) == null) {
+      if (int.tryParse(value!) == null) {
+        return defaultMessage;
+      }
+      if (int.tryParse(value)! < 0) {
+        return defaultMessage;
+      }
+      return null;
+    };
+  }
+
+  static String? Function(String?) validateDoubleNonNegative({String defaultMessage = "Enter a valid number"}) {
+    return (value) {
+      if (double.tryParse(value!) == null) {
         return defaultMessage;
       }
       if (double.tryParse(value)! < 0) {

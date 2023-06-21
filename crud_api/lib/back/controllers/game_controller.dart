@@ -1,4 +1,4 @@
-import 'package:crud_api/back/dao/game_repository.dart';
+import 'package:crud_api/back/repository/game_repository.dart';
 import 'package:crud_api/back/models/game.dart';
 
 class GameController {
@@ -38,8 +38,9 @@ class GameController {
 
   //void edit(Game game) {}
 
-  void delete(String id) {
-    gameRepository.deleteGame(id);
+  void delete(Game game) {
+    gameRepository.deleteGame(game.id!);
+    _listGames = [];
   }
 
   /* void clear() {

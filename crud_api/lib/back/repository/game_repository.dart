@@ -4,7 +4,7 @@ import 'package:pocketbase/pocketbase.dart';
 class GameRepository {
   final _pb = PocketBase('http://127.0.0.1:8090');
 
-  void _createConnection() async {
+  Future<void> _createConnection() async {
     try {
       final authData = await _pb.admins.authWithPassword('adm@adm.com', '0123456789');
     } catch (e) {
@@ -22,7 +22,7 @@ class GameRepository {
   }
 
   Future<List<Game>> pullGames() async {
-    _createConnection();
+    await _createConnection();
 
     List<RecordModel> records = [];
     try {
@@ -45,7 +45,7 @@ class GameRepository {
   }
 
   void createGame(Game game) async {
-    _createConnection();
+    await _createConnection();
     final gameMap = <String, dynamic>{"title": game.title, "price": game.price, "publisher": game.publisher};
 
     try {
@@ -57,7 +57,7 @@ class GameRepository {
   }
 
   void updateGame(Game game) async {
-    _createConnection();
+    await _createConnection();
     final gameMap = <String, dynamic>{"title": game.title, "price": game.price, "publisher": game.publisher};
     try {
       final record = await _pb.collection('game').update(game.id!, body: gameMap);
@@ -68,7 +68,7 @@ class GameRepository {
   }
 
   void deleteGame(String id) async {
-    _createConnection();
+    await _createConnection();
     try {
       await _pb.collection('game').delete(id);
     } catch (e) {

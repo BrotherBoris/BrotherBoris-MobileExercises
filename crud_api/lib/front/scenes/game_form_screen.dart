@@ -67,7 +67,7 @@ class _GameFormScreen extends State<GameFormScreen> {
             NumberTextFieldForm(
               fieldLabel: "Price",
               controller: _priceController,
-              validators: [ValidatorForm.validateEmpty(), ValidatorForm.validateNumberNonNegative()],
+              validators: [ValidatorForm.validateEmpty(), ValidatorForm.validateDoubleNonNegative()],
               onSaved: (value) {},
             ),
             const SizedBox(height: 10),

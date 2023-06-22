@@ -18,9 +18,7 @@ class _GameListScreen extends State<GameListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Games List"),
-      ),
+      appBar: AppBar(title: const Text("Games List"), automaticallyImplyLeading: false),
       body: Center(
           child: ListView(
         scrollDirection: Axis.vertical,
@@ -37,6 +35,23 @@ class _GameListScreen extends State<GameListScreen> {
                     style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                   ),
                 ),
+                Center(
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  BasicButton(
+                      buttonText: "Add Game",
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => GameFormScreen()),
+                        );
+                      }),
+                  const SizedBox(width: 10),
+                  BasicButton(
+                      buttonText: "Return",
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }),
+                ])),
                 FutureBuilder<List<Game>>(
                   future: widget.gameController.listGames,
                   builder: (context, snapshot) {
@@ -66,7 +81,7 @@ class _GameListScreen extends State<GameListScreen> {
                                   DataCell(BasicButton(
                                     buttonText: "Edit",
                                     onPressed: () {
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => GameFormScreen(

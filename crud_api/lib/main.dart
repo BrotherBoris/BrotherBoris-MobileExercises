@@ -7,12 +7,6 @@ void main() {
   runApp(const MyApp());
 }
 
-// teste
-// * teste
-// ! teste
-// ? teste
-// TODO teste
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -24,7 +18,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      // ! change after testing
       home: const MyHomePage(),
     );
   }
@@ -48,14 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            BasicButton(
-                buttonText: "Form",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => GameFormScreen()),
-                  );
-                }),
             const SizedBox(height: 10),
             BasicButton(
                 buttonText: "List",

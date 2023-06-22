@@ -14,6 +14,10 @@ class GameController {
     return _listGames;
   }
 
+  void reloadList() {
+    _listGames = [];
+  }
+
   Game? get game => _game;
   // Getters //
   // setters //

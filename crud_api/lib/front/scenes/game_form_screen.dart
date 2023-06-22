@@ -1,3 +1,4 @@
+import 'package:crud_api/front/scenes/game_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:crud_api/back/controllers/game_controller.dart';
 import 'package:crud_api/back/models/game.dart';
@@ -49,9 +50,7 @@ class _GameFormScreen extends State<GameFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.gameController.game == null ? 'New Game' : 'Edit Game'),
-      ),
+      appBar: AppBar(title: Text(widget.gameController.game == null ? 'New Game' : 'Edit Game'), automaticallyImplyLeading: false),
       body: Center(
         child: Form(
           key: _formkey,
@@ -89,7 +88,10 @@ class _GameFormScreen extends State<GameFormScreen> {
                         if (_formkey.currentState!.validate()) {
                           widget.gameController
                               .create(Game(title: _titleController.text, price: double.parse(_priceController.text), publisher: _publisherController.text));
-                          Navigator.pop(context);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => GameListScreen()),
+                          );
                         }
                       }),
                   VisibleButton(
@@ -104,7 +106,10 @@ class _GameFormScreen extends State<GameFormScreen> {
                             publisher: _publisherController.text,
                           ));
                           widget.gameController.update(widget.gameController.game!);
-                          Navigator.pop(context);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => GameListScreen()),
+                          );
                         }
                       }),
                   const SizedBox(width: 10),
@@ -120,7 +125,10 @@ class _GameFormScreen extends State<GameFormScreen> {
                   BasicButton(
                       buttonText: "Return",
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => GameListScreen()),
+                        );
                       }),
                 ],
               ),
